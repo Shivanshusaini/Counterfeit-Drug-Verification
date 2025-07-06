@@ -28,9 +28,9 @@ MEDIA_ROOT =os.path.join(BASE_DIR,'media')
 SECRET_KEY = 'django-insecure-74uh^03a=os!k2)cr1jvon4(tt4_-y_+wi0gbkcmq4mxsqe5ya'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['counterfeit-drug-verification-1.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
