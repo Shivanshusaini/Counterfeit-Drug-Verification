@@ -28,7 +28,7 @@ MEDIA_ROOT =os.path.join(BASE_DIR,'media')
 SECRET_KEY = 'django-insecure-74uh^03a=os!k2)cr1jvon4(tt4_-y_+wi0gbkcmq4mxsqe5ya'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['counterfeit-drug-verification-1.onrender.com', 'localhost', '127.0.0.1']
 
@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  
 ]
 
 ROOT_URLCONF = 'CDVS.urls'
@@ -123,6 +124,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+os.environ['DJANGO_COLLECTSTATIC'] = '1'  # ✅ यह force करता है कि कोई input ना मांगे
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
