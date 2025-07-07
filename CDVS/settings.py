@@ -13,12 +13,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# ✅ Security
-SECRET_KEY = 'django-insecure-74uh^03a=os!k2)cr1jvon4(tt4_-y_+wi0gbkcmq4mxsqe5ya'
-DEBUG = False
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-ALLOWED_HOSTS = ['counterfeit-drug-verification-1.onrender.com', 'localhost', '127.0.0.1']
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
 # ✅ Installed Apps
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -71,10 +70,12 @@ WSGI_APPLICATION = 'CDVS.wsgi.application'
 DATABASE_URL = os.getenv('DATABASE_URL')
 
 if DATABASE_URL:
+    # Production: Postgres on Render
     DATABASES = {
-        'default': dj_database_url.config(default=DATABASE_URL)
+        'default': dj_database_url.parse(DATABASE_URL)
     }
 else:
+    # Local: SQLite fallback
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
