@@ -1,4 +1,3 @@
-
 from django.db import models
 import qrcode
 from io import BytesIO
