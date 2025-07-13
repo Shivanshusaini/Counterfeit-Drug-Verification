@@ -28,7 +28,7 @@ class DrugBatch(models.Model):
         if not self.pk:
             super().save(*args, **kwargs)
 
-        qr_data = f"Batch: {self.batch_number}\nSerial: {self.serial_number}"
+        qr_data = f"Batch: {self.drug_name}\n{self.batch_number}\nSerial: {self.serial_number}"
         qr = qrcode.make(qr_data)
         canvas = BytesIO()
         qr.save(canvas, format='PNG')
