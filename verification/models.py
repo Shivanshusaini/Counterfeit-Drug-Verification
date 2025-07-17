@@ -7,6 +7,8 @@ import string
 import tempfile
 import os
 from .utils import upload_qr_to_supabase
+from django.conf import settings
+
 
 class DrugBatch(models.Model):
     batch_number = models.AutoField(primary_key=True)
@@ -28,8 +30,16 @@ class DrugBatch(models.Model):
         if not self.pk:
             super().save(*args, **kwargs)
 
-        qr_data = f"Batch: {self.drug_name}\n{self.batch_number}\nSerial: {self.serial_number}"
+        # qr_data = f"Batch: {self.drug_name}\n{self.batch_number}\nSerial: {self.serial_number}"
+        # qr = qrcode.make(qr_data)
+          # Ensure folder exists
+        local_qr_dir = os.path.join(settings.MEDIA_ROOT, 'qr_codes')
+        if not os.path.exists(local_qr_dir):
+            os.makedirs(local_qr_dir)
+
+        qr_data = f"https://counterfeit-drug-verification-1.onrender.com/verify/batch/{self.serial_number}/"
         qr = qrcode.make(qr_data)
+
         canvas = BytesIO()
         qr.save(canvas, format='PNG')
         canvas.seek(0)

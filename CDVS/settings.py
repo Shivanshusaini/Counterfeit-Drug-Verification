@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'verification',
+    'django_extensions', ## update
 ]
 
 # ✅ Middleware
@@ -109,3 +110,8 @@ os.environ['DJANGO_COLLECTSTATIC'] = '1'
 
 # ✅ Default primary key
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# ✅ Force trailing slash for matching URLs  ####### update
+APPEND_SLASH = True
+#############

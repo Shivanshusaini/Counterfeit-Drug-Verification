@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from .models import DrugBatch
 from django.db import OperationalError  # Add this line
-
+from django.http import HttpResponse
 def home(request):
     result = None
     serial = request.GET.get('serial') or request.POST.get('serial_number')
@@ -23,3 +23,11 @@ def about(request):
 def contact(request):
     return render(request,'contact.html')
 # Create your views here.
+
+##################
+def verify_batch(request, serial_number):
+    batch = DrugBatch.objects.filter(serial_number=serial_number).first()
+    if batch:
+        return render(request, 'verify_result.html', {'batch': batch})
+    return HttpResponse("❌ No batch found! Counterfeit or Invalid Serial Number.")
+#################
