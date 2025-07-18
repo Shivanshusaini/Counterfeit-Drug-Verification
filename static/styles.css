@@ -20,6 +20,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 header h1 {
@@ -47,7 +48,7 @@ nav a:hover {
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  flex: 1; /* Very important: makes container grow and push footer down */
+  flex: 1;
 }
 
 /* Form */
@@ -85,6 +86,7 @@ button:hover {
   padding: 15px;
   background: #e2e2e2;
   border-radius: 4px;
+  word-wrap: break-word;
 }
 
 /* Footer */
@@ -93,4 +95,34 @@ footer {
   color: #fff;
   text-align: center;
   padding: 1rem 2rem;
+  margin-top: auto;
 }
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav a {
+    margin: 10px 0 0 0;
+  }
+
+  .container {
+    margin: 20px 15px;
+    padding: 20px;
+  }
+
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
+
+
