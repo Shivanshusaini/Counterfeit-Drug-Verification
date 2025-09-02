@@ -1,13 +1,15 @@
 {% load static %}
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Drug Verification Result</title>
-     <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
+
 <body>
-      <header>
+    <header>
         <h1>Counterfeit Drug Verification</h1>
         <nav>
             <a href="/">Home</a>
@@ -15,22 +17,24 @@
             <a href="/contact/">Contact</a>
             <a href="/admin/">Admin</a>
         </nav>
+        <div class="toggle-menu" id="toggle-menu">☰</div>
     </header>
     </header>
 
     <div class="container">
         <h1>Drug Verification Result</h1>
-        
+
         <div class="info"><span>Drug Name:</span> {{ batch.drug_name }}</div>
         <div class="info"><span>Batch Number:</span> {{ batch.batch_number }}</div>
         <div class="info"><span>Serial Number:</span> {{ batch.serial_number }}</div>
         <div class="info"><span>Manufacturer:</span> {{ batch.manufacturer }}</div>
         <div class="info"><span>Production Date:</span> {{ batch.production_date }}</div>
         <div class="info"><span>Expiry Date:</span> {{ batch.expiry_date }}</div>
-        </div> 
-
-    <footer>
-            © 2025 My Project. All rights reserved to Shivanshu Saini.
+    </div>
+<script src="{% static 'script.js' %}"></script>
+  <footer>
+        &copy; 2025 My Project. All rights reserved to Shivanshu saini.
     </footer>
 </body>
-</html> 
+  
+</html>
