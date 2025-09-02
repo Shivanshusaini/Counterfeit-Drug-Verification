@@ -2,22 +2,36 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Drug Verification</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+
 </head>
 
 <body>
+    <!-- 🎥 Background video -->
+    <video autoplay muted loop class="video-bg">
+        <!-- <source src="{% static 'bgvideo.mp4' %}" type="video/mp4"> -->
+        <source src="{% static 'images/7033919-uhd_3840_2160_25fps.mp4' %}" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+
+    <!-- 🔥 Overlay -->
+    <div class="overlay"></div>
+
     <header>
         <h1>Counterfeit Drug Verification</h1>
-        <nav>
+        <nav id="navLinks">
             <a href="/">Home</a>
             <a href="/about/">About</a>
             <a href="/contact/">Contact</a>
             <a href="/admin/">Admin</a>
         </nav>
+        <div class="toggle-menu" id="toggle-menu">☰</div>
     </header>
 
     <div class="container">
@@ -29,14 +43,17 @@
         </form>
 
         {% if result %}
-            <div class="result">
-                <h4>Result:</h4>
-                <p>{{ result }}</p>
-            </div>
+        <div class="result">
+            <h4>Result:</h4>
+            <p>{{ result }}</p>
+        </div>
         {% endif %}
     </div>
+    <footer>
+        &copy; 2025 My Project. All rights reserved to Shivanshu saini.
+    </footer>
+    <script src="{% static 'script.js' %}"></script>
 </body>
- <footer>
-    &copy; 2025 My Project. All rights reserved to Shivanshu saini.
-  </footer>
+
+
 </html>

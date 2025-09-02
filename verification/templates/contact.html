@@ -1,9 +1,10 @@
 {% load static%}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact - Drug Verification</title>
   <link rel="stylesheet" href="{% static 'styles.css'%}">
 </head>
@@ -11,18 +12,46 @@
 <body>
   <header>
     <h1>Contact Us</h1>
-    <nav>
-            <a href="/">Home</a>
-            <a href="/about/">About</a>
-            <a href="/contact/">Contact</a>
-        </nav>
+    <nav  id="navLinks">
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/admin/">Admin</a>
+    </nav>
+    <div class="toggle-menu" id="toggle-menu">☰</div>
   </header>
+  <main>
+    <div class="main1">
+      <!-- 🎥 Background video -->
+      <video autoplay muted loop class="video-bg">
+        <!-- <source src="{% static 'bgvideo.mp4' %}" type="video/mp4"> -->
+        <source src="{% static 'images/7033919-uhd_3840_2160_25fps.mp4' %}" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
 
-  <div class="container">
-    <h2>Get in Touch</h2>
-    <p>Email: youremail@example.com</p>
-    <p>Phone: +91-XXXXXXXXXX</p>
-    <p>Address: Your city, Your state, India</p>
-  </div>
+      <!-- 🔥 Overlay -->
+      <div class="overlay"></div>
+      <div class="container">
+        <h2>Get in Touch</h2>
+        <div class="contact-item">
+          <strong>Email:</strong> Shivanshusaini707@gmail.com
+        </div>
+        <div class="contact-item">
+          <strong>Phone:</strong> +91-7078271839
+        </div>
+        <div class="contact-item">
+          <strong>Address:</strong> Moradabad, India
+        </div>
+        <div class="image-section">
+          <img src="{% static 'images\verifymedicine.jpg' %}" alt="Drug Verification Awareness">
+        </div>
+      </div>
+  </main>
+
+  <footer>
+    &copy; 2025 My Project. All rights reserved to Shivanshu saini.
+  </footer>
+  
+  <script src="{% static 'script.js' %}"></script>
 </body>
 </html>

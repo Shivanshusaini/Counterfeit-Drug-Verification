@@ -1,27 +1,87 @@
 {%load static%}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About - Drug Verification</title>
   <link rel="stylesheet" href="{%static 'styles.css'%}">
+
 </head>
 
 <body>
   <header>
     <h1>About Us</h1>
-    <nav>
-            <a href="/">Home</a>
-            <a href="/about/">About</a>
-            <a href="/contact/">Contact</a>
-        </nav>
+    <nav id="navLinks">
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/admin/">Admin</a>
+    </nav>
+    <div class="toggle-menu" id="toggle-menu">☰</div>
   </header>
+  <main>
+    <div class="section">
+      <h2>About Counterfeit Drug Verification</h2>
+      <p>This project is designed to help people verify whether a medicine is genuine or fake using a unique serial
+        number and QR code. We aim to protect consumers from counterfeit medicines and ensure safety by providing a
+        simple online verification system.</p>
 
-  <div class="container">
-    <h2>About Counterfeit Drug Verification</h2>
-    <p>This project is designed to help people verify whether a medicine is genuine or fake using a unique serial number and QR code.</p>
-    <p>We aim to protect consumers from counterfeit medicines and ensure safety by providing a simple online verification system.</p>
-  </div>
+      <div class="image-section">
+        <!-- <img src="{% static 'drug-awareness.jpg' %}" alt="Drug Verification Awareness"> -->
+
+        <img src="{%static  'images/scanmedicine.jpg' %}" alt="Drug Verification Awareness">
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Problem Statement</h2>
+      <p>Counterfeit drugs are a major threat to global health. This system was built to help users instantly verify the
+        authenticity of a medicine using its batch and serial number.</p>
+    </div>
+
+    <div class="section">
+      <h2>How It Works</h2>
+      <ul>
+        <li>User scans a QR code or enters a batch/serial number.</li>
+        <li>Our system checks the data from the official drug batch database.</li>
+        <li>The result shows drug name, manufacturer, and production/expiry dates to ensure authenticity.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Technology Stack</h2>
+      <p><strong>Technologies Used:</strong> Django (Backend), SQLite (Database), HTML/CSS (Frontend), QR Code
+        Generation.</p>
+    </div>
+
+    <div class="section">
+      <h2>Developer Info</h2>
+      <p>This system is developed by <strong>Shivanshu Saini</strong>, an MCA student passionate about solving
+        real-world problems using tech.</p>
+    </div>
+
+    <div class="section">
+      <h2>Future Goals</h2>
+      <ul>
+        <li>Integrate AI-based anomaly detection for fake drugs.</li>
+        <li>Add multilingual support for rural outreach.</li>
+        <li>Mobile app version for offline verification.</li>
+      </ul>
+    </div>
+
+    <!-- <div class="image-section">
+       <img src="{% static 'drug-awareness.jpg' %}" alt="Drug Verification Awareness"> 
+    
+    <img src="scanmedicine.jpg" alt="Drug Verification Awareness"></div> -->
+    
+  </main>
+  <footer>
+    &copy; 2025 My Project. All rights reserved to Shivanshu Saini.
+
+  </footer>
+   <script src="{% static 'script.js' %}"></script>
 </body>
+
 </html>
