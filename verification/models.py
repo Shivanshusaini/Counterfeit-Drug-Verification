@@ -7,7 +7,7 @@ import string
 import tempfile
 import os
 from .utils import upload_qr_to_supabase
-from django.conf import settings
+from django.conf import settings  #update
 
 
 class DrugBatch(models.Model):
@@ -30,16 +30,19 @@ class DrugBatch(models.Model):
         if not self.pk:
             super().save(*args, **kwargs)
 
-        # qr_data = f"Batch: {self.drug_name}\n{self.batch_number}\nSerial: {self.serial_number}"
-        # qr = qrcode.make(qr_data)
-          # Ensure folder exists
+        # for local host to show direct drugname , batch number and serial number 
+        qr_data = f"Batch: {self.drug_name}\n{self.batch_number}\nSerial: {self.serial_number}"
+        qr = qrcode.make(qr_data)
+        
+        #################
         local_qr_dir = os.path.join(settings.MEDIA_ROOT, 'qr_codes')
         if not os.path.exists(local_qr_dir):
             os.makedirs(local_qr_dir)
+        # for live host open website directly and show result
+        # qr_data = f"https://counterfeit-drug-verification-1.onrender.com/verify/batch/{self.serial_number}/"
+        # qr = qrcode.make(qr_data)
 
-        qr_data = f"https://counterfeit-drug-verification-1.onrender.com/verify/batch/{self.serial_number}/"
-        qr = qrcode.make(qr_data)
-
+        #############
         canvas = BytesIO()
         qr.save(canvas, format='PNG')
         canvas.seek(0)
@@ -54,16 +57,19 @@ class DrugBatch(models.Model):
         # ✅ Local save
         self.qr_code_img.save(filename, ContentFile(canvas.read()), save=False)
 
-        # ✅ Supabase overwrite
-        canvas.seek(0)
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as tmp_file:
-            tmp_file.write(canvas.getvalue())
-            tmp_file.flush()
-            tmp_file.close()
+        # ✅ Supabase upload (DISABLED for local)
+        # canvas.seek(0)
+        # with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as tmp_file:
+        #     tmp_file.write(canvas.getvalue())
+        #     tmp_file.flush()
+        #     tmp_file.close()
+        #
+        #     self.qr_code_url = upload_qr_to_supabase(filename, tmp_file.name)
+        #
+        #     os.remove(tmp_file.name)
 
-            self.qr_code_url = upload_qr_to_supabase(filename, tmp_file.name)
-
-            os.remove(tmp_file.name)
+        # 👉 Local dummy URL instead of Supabase
+        self.qr_code_url = f"/media/qr_codes/{filename}"
 
         canvas.close()
 
