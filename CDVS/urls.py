@@ -13,22 +13,57 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+# """
+# from django.contrib import admin
+# from django.urls import path,include
+# from django.urls import path
+# from django.conf import settings
+# from django.conf.urls.static import static 
+
+# from verification.views import create_admin
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('',include('verification.urls')),
+    
+# ]
+
+# urlpatterns += static(settings.MEDIA_URL ,document_root =settings.MEDIA_ROOT)
+# if settings.DEBUG:
+#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# #render.com deployment temporary route user creation
+# urlpatterns = [
+#     path("admin/", admin.site.urls),
+
+#     # Temporary route (will auto-disable)
+#     path("create-admin/", create_admin),
+# ]
 from django.contrib import admin
-from django.urls import path,include
-
+from django.urls import path, include
 from django.conf import settings
-from django.conf.urls.static import static 
+from django.conf.urls.static import static
 
-
+# Safe optional import
+try:
+    from verification.views import create_admin
+    TEMP_ADMIN = True
+except:
+    TEMP_ADMIN = False
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',include('verification.urls')),
-    
+    path("admin/", admin.site.urls),
+    path("", include("verification.urls")),
 ]
 
-urlpatterns += static(settings.MEDIA_URL ,document_root =settings.MEDIA_ROOT)
+# Static & Media
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+# Add admin route only if file exists
+if TEMP_ADMIN:
+    urlpatterns += [
+        path("create-admin/", create_admin),
+    ]
