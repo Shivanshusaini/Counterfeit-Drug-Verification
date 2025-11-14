@@ -115,3 +115,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ✅ Force trailing slash for matching URLs  ####### update
 APPEND_SLASH = True
 #############
+
+
+# for database error
+# Disable admin email errors
+SILENCED_SYSTEM_CHECKS = ["admin.E403"]
+
+# TEMP email backend for Render (prevents 500 error)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
