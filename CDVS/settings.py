@@ -73,8 +73,9 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 if DATABASE_URL:
     # Production: Postgres on Render
     DATABASES = {
-        'default': dj_database_url.parse(DATABASE_URL)
-    }
+        'default': dj_database_url.parse(DATABASE_URL,ssl_require=True)
+            
+}
 else:
     # Local: SQLite fallback
     DATABASES = {
